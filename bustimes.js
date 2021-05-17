@@ -61,7 +61,7 @@
         .marquee p {
             position: absolute;
             display: inline-block;
-            width: 320px;
+            width: 300%;
             height: 25px;
             margin: 0px;
             white-space: nowrap;
@@ -72,7 +72,7 @@
             transform: translateX(100%);
             -moz-animation: scroll-left 4s linear infinite;
             -webkit-animation: scroll-left 4s linear infinite;
-            animation: scroll-left 30s linear infinite;
+            animation: scroll-left 60s linear infinite;
         }
         
         @-moz-keyframes scroll-left {
@@ -95,9 +95,9 @@
         
         @keyframes scroll-left {
             0% {
-                -moz-transform: translateX(100%);
-                -webkit-transform: translateX(100%);
-                transform: translateX(100%);
+                -moz-transform: translateX(25%);
+                -webkit-transform: translateX(25%);
+                transform: translateX(25%);
             }
             100% {
                 -moz-transform: translateX(-200%);
@@ -123,12 +123,13 @@
     </div>
 
 <script>
-    // Version 1.0 of TransportAPI Bus Times Widget
+    // Version 1.1 of TransportAPI Bus Times Widget
     // (C) K.Fairhurst 2021
     // This source code is licensed under the BSD-style license found in the
     // LICENSE file in the root directory of this source tree. 
 
     // v1.0   Initial Release
+    // v1.1   Few display tweaks 
 
 
     // Based on NR Departure Board widget by Richard Farnworth
@@ -331,8 +332,9 @@
 
     // Timer is: 180,000 = (1000ms x 60 seconds x 3 mins)
 
+    var myTimer = 180000;
+
     myMain();
-    var myTimer = setInterval(myMain, 180000);
 
 
     function myMain() {
@@ -729,6 +731,10 @@
             }  // xhr.onload = function()
 
         }  // if ( v_apisaver == "ON" )
+
+		    // Snooze for the alloted time then re-run the main proc!
+
+		    setTimeout( myMain, myTimer );
 
     }  // MyMain() 
 
